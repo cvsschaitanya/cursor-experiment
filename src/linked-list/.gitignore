@@ -1,6 +1,11 @@
 # Build directory
 build/
 
+# Gradle specific
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+
 # OS specific files
 .DS_Store
 *.swp
