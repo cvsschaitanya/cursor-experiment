@@ -1,0 +1,26 @@
+# Compiled binaries
+src/linked-list/linked_list
+
+# Object files
+*.o
+
+# Debug files
+*.dSYM/
+
+# IDE specific files
+.vscode/
+.idea/
+
+# OS specific files
+.DS_Store
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+ENV/ 
