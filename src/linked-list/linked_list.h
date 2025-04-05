@@ -13,6 +13,7 @@ typedef struct Node {
 // Structure for the linked list
 typedef struct {
     Node* head;
+    Node* tail;  // Add tail pointer for O(1) append
     int size;
 } LinkedList;
 
@@ -20,7 +21,7 @@ typedef struct {
 LinkedList* createList();
 void insertAtBeginning(LinkedList* list, int data);
 void insertAtEnd(LinkedList* list, int data);
-void deleteNode(LinkedList* list, int data);
+void deleteFirstOccurrence(LinkedList* list, int data);  // Renamed to be explicit
 void printList(LinkedList* list);
 void freeList(LinkedList* list);
 

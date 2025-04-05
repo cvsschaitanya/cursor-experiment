@@ -4,6 +4,7 @@ LinkedList* createList() {
     LinkedList* list = (LinkedList*)malloc(sizeof(LinkedList));
     if (list != NULL) {
         list->head = NULL;
+        list->tail = NULL;
         list->size = 0;
     }
     return list;
@@ -15,6 +16,9 @@ void insertAtBeginning(LinkedList* list, int data) {
         newNode->data = data;
         newNode->next = list->head;
         list->head = newNode;
+        if (list->tail == NULL) {
+            list->tail = newNode;
+        }
         list->size++;
     }
 }
@@ -27,18 +31,16 @@ void insertAtEnd(LinkedList* list, int data) {
         
         if (list->head == NULL) {
             list->head = newNode;
+            list->tail = newNode;
         } else {
-            Node* current = list->head;
-            while (current->next != NULL) {
-                current = current->next;
-            }
-            current->next = newNode;
+            list->tail->next = newNode;
+            list->tail = newNode;
         }
         list->size++;
     }
 }
 
-void deleteNode(LinkedList* list, int data) {
+void deleteFirstOccurrence(LinkedList* list, int data) {
     if (list->head == NULL) return;
 
     Node* current = list->head;
@@ -47,6 +49,9 @@ void deleteNode(LinkedList* list, int data) {
     // If head node itself holds the data to be deleted
     if (current != NULL && current->data == data) {
         list->head = current->next;
+        if (list->tail == current) {
+            list->tail = NULL;
+        }
         free(current);
         list->size--;
         return;
@@ -63,6 +68,9 @@ void deleteNode(LinkedList* list, int data) {
 
     // Unlink the node from linked list
     prev->next = current->next;
+    if (list->tail == current) {
+        list->tail = prev;
+    }
     free(current);
     list->size--;
 }

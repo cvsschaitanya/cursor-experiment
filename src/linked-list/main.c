@@ -15,8 +15,8 @@ int main() {
     printList(list);
 
     // Delete an element
-    printf("\nDeleting 20 from the list...\n");
-    deleteNode(list, 20);
+    printf("\nDeleting first occurrence of 20 from the list...\n");
+    deleteFirstOccurrence(list, 20);
     printList(list);
 
     // Insert more elements
