@@ -1,0 +1,37 @@
+plugins {
+    id 'c'
+}
+
+model {
+    components {
+        main(NativeExecutableSpec) {
+            sources {
+                c {
+                    source {
+                        srcDir '.'
+                        include '*.c'
+                    }
+                    exportedHeaders {
+                        srcDir '.'
+                        include '*.h'
+                    }
+                }
+            }
+        }
+    }
+}
+
+tasks.withType(CCompile) {
+    // Add compiler flags
+    compilerArgs.add '-Wall'
+    compilerArgs.add '-Wextra'
+}
+
+// Configure build directory
+buildDir = 'build'
+
+// Add a custom run task
+task run(type: Exec) {
+    dependsOn 'mainExecutable'
+    executable = file("$buildDir/exe/main/main")
+} 
